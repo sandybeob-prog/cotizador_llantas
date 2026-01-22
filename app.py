@@ -6,15 +6,16 @@ from sqlalchemy import create_engine, text
 # Cargar variables de entorno
 load_dotenv()
 
-DATABASE_URL = os.getenv("DATABASE_URL")
+# Railway usa esta variable
+URL_BASE_DE_DATOS = os.getenv("URL_BASE_DE_DATOS")
 
-# Validación básica
-if not DATABASE_URL:
-    st.error("❌ No se encontró DATABASE_URL en el archivo .env")
+if not URL_BASE_DE_DATOS:
+    st.error("❌ Falta la variable de entorno URL_BASE_DE_DATOS")
     st.stop()
 
 # Conexión a la BD
-engine = create_engine(DATABASE_URL)
+engine = create_engine(URL_BASE_DE_DATOS)
+
 
 st.title("🛞 Cotizador de Llantas")
 
